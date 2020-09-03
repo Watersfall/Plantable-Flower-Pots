@@ -1,6 +1,6 @@
 {
 	"parent": "minecraft:block/flower_pot_cross",
 	"textures": {
-		"plant": "minecraft:block/red_tulip"
+		"plant": "plantable_pots:block/oxeye_daisy_age_1"
 	}
 }
