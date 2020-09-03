@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "plantable_pots",
+	"version": "${version}",
+
+	"name": "Plantable Pots",
+	"description": "Plantable Pots",
+	"authors": [
+		"Watersfall"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/Watersfall/PlantablePots"
+	},
+
+	"license": "CC0-1.0",
+	"icon": "assets/plantable_pots/icon.png",
+
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.watersfall.plantablepots.PlantablePots"
+		],
+		"client": [
+			"com.watersfall.plantablepots.PlantablePotsClient"
+		]
+	},
+
+	"depends": {
+		"fabricloader": ">=0.7.4",
+		"fabric": "*",
+		"minecraft": "1.16.x"
+	},
+	"suggests": {
+		"flamingo": "*"
+	}
+}
