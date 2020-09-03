@@ -1,14 +1,11 @@
 package com.watersfall.plantablepots.script;
 
 import com.watersfall.plantablepots.block.ModBlocks;
-import com.watersfall.plantablepots.block.PlantableFlowerPotBlock;
 import net.minecraft.block.Block;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +13,7 @@ public class GenerateJSON
 {
 	private static final File BLOCKSTATE_DIRECTORY = new File("C:\\Users\\Chris\\Desktop\\data\\blockstates");
 	private static final File MODEL_DIRECTORY = new File("C:\\Users\\Chris\\Desktop\\data\\models\\block");
+	private static final File LOOT_TABLE_DIRECTORY = new File("C:\\Users\\Chris\\Desktop\\data\\loot_tables\\blocks");
 
 	private static final String BLOCKSTATE_JSON_TEMPLATE =
 			"{\n" +
@@ -47,6 +45,42 @@ public class GenerateJSON
 			"\t\"textures\": {\n" +
 			"\t\t\"plant\": \"minecraft:block/{name}\"\n" +
 			"\t}\n" +
+			"}";
+	private static final String LOOT_TABLE_JSON_TEMPLATE =
+			"{\n" +
+			"\t\"type\": \"minecraft:block\",\n" +
+			"\t\"pools\": [\n" +
+			"\t\t{\n" +
+			"\t\t\t\"rolls\": 1,\n" +
+			"\t\t\t\"entries\": [\n" +
+			"\t\t\t\t{\n" +
+			"\t\t\t\t\t\"type\": \"minecraft:item\",\n" +
+			"\t\t\t\t\t\"name\": \"minecraft:flower_pot\"\n" +
+			"\t\t\t\t}\n" +
+			"\t\t\t],\n" +
+			"\t\t\t\"conditions\": [\n" +
+			"\t\t\t\t{\n" +
+			"\t\t\t\t\t\"condition\": \"minecraft:survives_explosion\"\n" +
+			"\t\t\t\t}\n" +
+			"\t\t\t]\n" +
+			"\t\t},\n" +
+			"\t\t{\n" +
+			"\t\t\t\"rolls\": 1,\n" +
+			"\t\t\t\"entries\": [\n" +
+			"\t\t\t\t{\n" +
+			"\t\t\t\t\t\"type\": \"minecraft:item\",\n" +
+			"\t\t\t\t\t\"name\": \"minecraft:{flower}\"\n" +
+			"\t\t\t\t}\n" +
+			"\t\t\t],\n" +
+			"\t\t\t\"conditions\": [\n" +
+			"\t\t\t\t{\n" +
+			"\t\t\t\t\t\"condition\": \"minecraft:block_state_property\",\n" +
+			"\t\t\t\t\t\"block\": \"plantable_pots:plantable_flower_pot_{flower}\",\n" +
+			"\t\t\t\t\t\"properties\": {\"age\": \"3\"}\n" +
+			"\t\t\t\t}\n" +
+			"\t\t\t]\n" +
+			"\t\t}\n" +
+			"\t]\n" +
 			"}";
 
 	private static Map<String, Block> getFlowers()
@@ -114,12 +148,28 @@ public class GenerateJSON
 		}
 	}
 
+	private static void generateLootTables(Map.Entry<String, Block> entry)
+	{
+		String name = entry.getKey().replace("plantable_flower_pot_", "");
+		String json = LOOT_TABLE_JSON_TEMPLATE.replace("{flower}", name);
+		File file = new File(LOOT_TABLE_DIRECTORY, entry.getKey() + ".json");
+		try(FileWriter writer = new FileWriter(file))
+		{
+			writer.write(json);
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
 	public static void generate()
 	{
 		for(Map.Entry<String, Block> entry : getFlowers().entrySet())
 		{
 			generateBlockState(entry);
 			generateModels(entry);
+			generateLootTables(entry);
 		}
 	}
 
