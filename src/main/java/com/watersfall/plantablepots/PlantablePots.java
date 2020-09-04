@@ -25,6 +25,5 @@ public class PlantablePots implements ModInitializer
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "plantable_flower_pot_blue_orchid"), ModBlocks.PLANTABLE_FLOWER_POT_BLUE_ORCHID);
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "plantable_flower_pot_poppy"), ModBlocks.PLANTABLE_FLOWER_POT_POPPY);
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "plantable_flower_pot_dandelion"), ModBlocks.PLANTABLE_FLOWER_POT_DANDELION);
-		GenerateJSON.generate();
 	}
 }
