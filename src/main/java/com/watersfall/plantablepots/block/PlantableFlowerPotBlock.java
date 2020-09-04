@@ -7,6 +7,7 @@ import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -19,6 +20,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.Random;
+import java.util.function.Consumer;
 
 public class PlantableFlowerPotBlock extends FlowerPotBlock implements Fertilizable
 {
@@ -72,6 +74,9 @@ public class PlantableFlowerPotBlock extends FlowerPotBlock implements Fertiliza
 					player.dropItem(new ItemStack(this.getContent()), false);
 				}
 				world.setBlockState(pos, this.withAge(0), 2);
+				player.getMainHandStack().damage(1, player, (Consumer<LivingEntity>)((p) -> {
+					p.sendToolBreakStatus(hand);
+				}));
 			}
 			return ActionResult.success(world.isClient);
 		}
