@@ -3,17 +3,18 @@
 	"id": "plantable_pots",
 	"version": "${version}",
 
-	"name": "Plantable Pots",
-	"description": "Plantable Pots",
+	"name": "Plantable Flower Pots",
+	"description": "Plantable Flower Pots",
 	"authors": [
 		"Watersfall"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/Watersfall/PlantablePots"
+		"homepage": "https://github.com/Watersfall/Plantable-Flower-Pots",
+		"sources": "https://github.com/Watersfall/Plantable-Flower-Pots",
+		"issues": "https://github.com/Watersfall/Plantable-Flower-Pots/issues"
 	},
 
-	"license": "CC0-1.0",
+	"license": "GPLv3",
 	"icon": "assets/plantable_pots/icon.png",
 
 	"environment": "*",

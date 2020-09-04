@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry;
 public class PlantablePots implements ModInitializer
 {
 	public static final String MOD_ID = "plantable_pots";
+	public static final String VERSION = "0.0.1";
 	@Override public void onInitialize()
 	{
 		System.out.println(PlantablePots.MOD_ID + ": Initializing Mod");
