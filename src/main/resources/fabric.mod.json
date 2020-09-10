@@ -13,6 +13,9 @@
 		"sources": "https://github.com/Watersfall/Plantable-Flower-Pots",
 		"issues": "https://github.com/Watersfall/Plantable-Flower-Pots/issues"
 	},
+	"mixins": [
+		"plantablepots.mixins.json"
+	],
 
 	"license": "GPLv3",
 	"icon": "assets/plantable_pots/icon.png",

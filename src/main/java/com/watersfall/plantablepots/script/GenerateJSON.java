@@ -98,6 +98,7 @@ public class GenerateJSON
 		map.put("plantable_flower_pot_blue_orchid", ModBlocks.PLANTABLE_FLOWER_POT_BLUE_ORCHID);
 		map.put("plantable_flower_pot_poppy", ModBlocks.PLANTABLE_FLOWER_POT_POPPY);
 		map.put("plantable_flower_pot_dandelion", ModBlocks.PLANTABLE_FLOWER_POT_DANDELION);
+		map.put("plantable_flower_pot_nirnroot", ModBlocks.PLANTABLE_FLOWER_POT_NIRNROOT);
 		return map;
 	}
 

@@ -23,5 +23,7 @@ public class PlantablePotsClient implements ClientModInitializer
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PLANTABLE_FLOWER_POT_BLUE_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PLANTABLE_FLOWER_POT_POPPY, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PLANTABLE_FLOWER_POT_DANDELION, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.NIRNROOT, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PLANTABLE_FLOWER_POT_NIRNROOT, RenderLayer.getCutout());
 	}
 }

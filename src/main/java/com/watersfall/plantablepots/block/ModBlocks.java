@@ -3,6 +3,9 @@ package com.watersfall.plantablepots.block;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerBlock;
+import net.minecraft.block.Material;
+import net.minecraft.entity.effect.StatusEffects;
 
 public class ModBlocks
 {
@@ -19,4 +22,6 @@ public class ModBlocks
 	public static final Block PLANTABLE_FLOWER_POT_BLUE_ORCHID = new PlantableFlowerPotBlock(Blocks.BLUE_ORCHID, FabricBlockSettings.copyOf(Blocks.POTTED_BLUE_ORCHID));
 	public static final Block PLANTABLE_FLOWER_POT_POPPY = new PlantableFlowerPotBlock(Blocks.POPPY, FabricBlockSettings.copyOf(Blocks.POTTED_POPPY));
 	public static final Block PLANTABLE_FLOWER_POT_DANDELION = new PlantableFlowerPotBlock(Blocks.DANDELION, FabricBlockSettings.copyOf(Blocks.POTTED_DANDELION));
+	public static final Block NIRNROOT = new FlowerBlock(StatusEffects.INVISIBILITY, 4, FabricBlockSettings.of(Material.PLANT).breakInstantly().lightLevel(5).noCollision());
+	public static final Block PLANTABLE_FLOWER_POT_NIRNROOT = new NirnrootPlantableFlowerPotBlock(ModBlocks.NIRNROOT, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).lightLevel(NirnrootPlantableFlowerPotBlock.createLightLevelFromBlockState()));
 }

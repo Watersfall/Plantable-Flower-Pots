@@ -3,6 +3,9 @@ package com.watersfall.plantablepots;
 import com.watersfall.plantablepots.block.ModBlocks;
 import com.watersfall.plantablepots.script.GenerateJSON;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -26,5 +29,8 @@ public class PlantablePots implements ModInitializer
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "plantable_flower_pot_blue_orchid"), ModBlocks.PLANTABLE_FLOWER_POT_BLUE_ORCHID);
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "plantable_flower_pot_poppy"), ModBlocks.PLANTABLE_FLOWER_POT_POPPY);
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "plantable_flower_pot_dandelion"), ModBlocks.PLANTABLE_FLOWER_POT_DANDELION);
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "nirnroot"), ModBlocks.NIRNROOT);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "nirnroot"), new BlockItem(ModBlocks.NIRNROOT, new Item.Settings().group(ItemGroup.BREWING)));
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "plantable_flower_pot_nirnroot"), ModBlocks.PLANTABLE_FLOWER_POT_NIRNROOT);
 	}
 }
