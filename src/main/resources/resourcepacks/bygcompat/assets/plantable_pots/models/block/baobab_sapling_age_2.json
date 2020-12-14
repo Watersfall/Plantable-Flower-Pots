@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/flower_pot_cross",
+	"textures": {
+		"plant": "plantable_pots:block/baobab_sapling_age_2"
+	}
+}

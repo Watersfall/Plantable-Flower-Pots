@@ -1,8 +1,10 @@
 package com.watersfall.plantablepots;
 
 import com.watersfall.plantablepots.block.ModBlocks;
+import com.watersfall.plantablepots.compat.BygCompat;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.render.RenderLayer;
 
 public class PlantablePotsClient implements ClientModInitializer
@@ -23,5 +25,9 @@ public class PlantablePotsClient implements ClientModInitializer
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PLANTABLE_FLOWER_POT_BLUE_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PLANTABLE_FLOWER_POT_POPPY, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PLANTABLE_FLOWER_POT_DANDELION, RenderLayer.getCutout());
+		if(FabricLoader.getInstance().isModLoaded("byg"))
+		{
+			BygCompat.initClient();
+		}
 	}
 }

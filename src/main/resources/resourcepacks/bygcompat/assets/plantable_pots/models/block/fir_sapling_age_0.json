@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/flower_pot_cross",
+	"textures": {
+		"plant": "plantable_pots:block/fir_sapling_age_0"
+	}
+}
