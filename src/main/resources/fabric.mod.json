@@ -23,17 +23,20 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.watersfall.plantablepots.PlantablePots"
+			"net.watersfall.plantablepots.PlantablePots"
 		],
 		"client": [
-			"com.watersfall.plantablepots.PlantablePotsClient"
+			"net.watersfall.plantablepots.client.PlantablePotsClient"
+		],
+		"fabric-datagen": [
+			"net.watersfall.plantablepots.data.PlantablePotsDataGenerator"
 		]
 	},
-
+	"accessWidener" : "plantablepots.accesswidener",
 	"depends": {
-		"fabricloader": ">=0.7.4",
+		"fabricloader": "*",
 		"fabric": "*",
-		"minecraft": "1.16.x"
+		"minecraft": "1.20.4"
 	},
 	"suggests": {
 		"flamingo": "*"

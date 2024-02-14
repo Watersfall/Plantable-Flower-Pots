@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "textures": {
+    "plant": "plantable_pots:block/allium_plantable_pot_age_2"
+  }
+}
