@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_flower_pot_cross",
+  "textures": {
+    "plant": "plantable_pots:block/unsupported_flower_pot_age_1"
+  }
+}

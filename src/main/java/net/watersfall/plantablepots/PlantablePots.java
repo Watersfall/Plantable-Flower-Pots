@@ -4,11 +4,14 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.watersfall.plantablepots.block.EmptyPlantableFlowerPotBlock;
 import net.watersfall.plantablepots.block.PlantableFlowerPotBlock;
+import net.watersfall.plantablepots.block.UnsupportedPlantableFlowerPotBlock;
+import net.watersfall.plantablepots.block.entity.UnsupportedPlantableFlowerPotBlockEntity;
 
 public class PlantablePots implements ModInitializer
 {
@@ -52,6 +55,9 @@ public class PlantablePots implements ModInitializer
 	public static PlantableFlowerPotBlock WARPED_ROOTS;
 	public static PlantableFlowerPotBlock AZALEA_BUSH;
 	public static PlantableFlowerPotBlock FLOWERING_AZALEA_BUSH;
+	public static UnsupportedPlantableFlowerPotBlock UNSUPPORTED_FLOWER_POT;
+
+	public static BlockEntityType<UnsupportedPlantableFlowerPotBlockEntity> UNSUPPORTED_FLOWER_POT_BLOCK_ENTITY;
 
 	@Override
 	public void onInitialize()
@@ -90,6 +96,9 @@ public class PlantablePots implements ModInitializer
 		WARPED_ROOTS = registerFlower(Blocks.WARPED_ROOTS);
 		AZALEA_BUSH = registerFlower(Blocks.AZALEA);
 		FLOWERING_AZALEA_BUSH = registerFlower(Blocks.FLOWERING_AZALEA);
+		UNSUPPORTED_FLOWER_POT = register("unsupported_flower_pot", new UnsupportedPlantableFlowerPotBlock(FabricBlockSettings.copyOf(Blocks.FLOWER_POT)));
+		UNSUPPORTED_FLOWER_POT_BLOCK_ENTITY = BlockEntityType.Builder.create(UnsupportedPlantableFlowerPotBlockEntity::new, UNSUPPORTED_FLOWER_POT).build(null);
+		Registry.register(Registries.BLOCK_ENTITY_TYPE, id("unsupported_flower_pot"), UNSUPPORTED_FLOWER_POT_BLOCK_ENTITY);
 	}
 
 	private <T extends Block> T register(String id, T block)

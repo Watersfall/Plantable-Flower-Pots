@@ -7,7 +7,9 @@ import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.GrassColors;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.watersfall.plantablepots.PlantablePots;
+import net.watersfall.plantablepots.client.render.block.UnsupportedPlantableFlowerPotBlockEntityRenderer;
 
 public class PlantablePotsClient implements ClientModInitializer
 {
@@ -46,7 +48,8 @@ public class PlantablePotsClient implements ClientModInitializer
 				PlantablePots.CRIMSON_ROOTS,
 				PlantablePots.WARPED_ROOTS,
 				PlantablePots.AZALEA_BUSH,
-				PlantablePots.FLOWERING_AZALEA_BUSH
+				PlantablePots.FLOWERING_AZALEA_BUSH,
+				PlantablePots.UNSUPPORTED_FLOWER_POT
 		);
 		ColorProviderRegistry.BLOCK.register(
 				(state, world, pos, tintIndex) ->
@@ -55,5 +58,6 @@ public class PlantablePotsClient implements ClientModInitializer
 				},
 				PlantablePots.FERN
 		);
+		BlockEntityRendererFactories.register(PlantablePots.UNSUPPORTED_FLOWER_POT_BLOCK_ENTITY, UnsupportedPlantableFlowerPotBlockEntityRenderer::new);
 	}
 }

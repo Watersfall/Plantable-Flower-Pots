@@ -62,12 +62,28 @@ public class PlantablePotsBlockstateGenerator extends FabricModelProvider
 		registerPlantablePot(PlantablePots.WARPED_ROOTS, blockStateModelGenerator, false);
 		registerPlantablePot(PlantablePots.AZALEA_BUSH, blockStateModelGenerator, false);
 		registerPlantablePot(PlantablePots.FLOWERING_AZALEA_BUSH, blockStateModelGenerator, false);
+		registerUnsupportedPlantablePot(PlantablePots.UNSUPPORTED_FLOWER_POT, blockStateModelGenerator);
 	}
 
 	@Override
 	public void generateItemModels(ItemModelGenerator itemModelGenerator)
 	{
 
+	}
+
+	public void registerUnsupportedPlantablePot(Block flowerPotBlock, BlockStateModelGenerator blockStateModelGenerator)
+	{
+		blockStateModelGenerator.blockStateCollector.accept(
+				VariantsBlockStateSupplier.create(flowerPotBlock).coordinate(
+						BlockStateVariantMap
+								.create(PlantableFlowerPotBlock.AGE)
+								.register(integer -> {
+									Identifier identifier;
+									identifier = blockStateModelGenerator.createSubModel(flowerPotBlock, "_age_" + integer, Models.TINTED_FLOWER_POT_CROSS, TextureMap::plant);
+									return BlockStateVariant.create().put(VariantSettings.MODEL, identifier);
+								})
+				)
+		);
 	}
 
 	public void registerPlantablePot(PlantableFlowerPotBlock flowerPotBlock, BlockStateModelGenerator blockStateModelGenerator, boolean tinted)

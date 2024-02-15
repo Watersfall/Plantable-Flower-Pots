@@ -16,6 +16,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.watersfall.plantablepots.PlantablePots;
+import net.watersfall.plantablepots.block.entity.UnsupportedPlantableFlowerPotBlockEntity;
+import net.watersfall.plantablepots.mixin.FlowerPotBlockAccessor;
 
 public class EmptyPlantableFlowerPotBlock extends CustomFlowerPotBlock
 {
@@ -39,16 +41,27 @@ public class EmptyPlantableFlowerPotBlock extends CustomFlowerPotBlock
 		if(!world.isClient)
 		{
 			FlowerPotBlock block = (FlowerPotBlock)state.getBlock();
-			Block newBlock = block;
+			Block newBlock;
 			if(block.getContent().getDefaultState().isAir())
 			{
 				newBlock = PlantablePots.EMPTY_PLANTABLE_POT;
 			}
-			else if(PlantableFlowerPotBlock.FLOWER_TO_POTTED_FLOWER.containsKey(block.getContent()))
+			else
 			{
 				newBlock = PlantableFlowerPotBlock.FLOWER_TO_POTTED_FLOWER.get(block.getContent());
+				if(newBlock == null)
+				{
+					newBlock = PlantablePots.UNSUPPORTED_FLOWER_POT;
+				}
 			}
 			world.setBlockState(hit.getBlockPos(), newBlock.getDefaultState());
+			if(newBlock == PlantablePots.UNSUPPORTED_FLOWER_POT)
+			{
+				if(world.getBlockEntity(hit.getBlockPos()) instanceof UnsupportedPlantableFlowerPotBlockEntity entity)
+				{
+					entity.setFlower(block.getContent());
+				}
+			}
 		}
 		return ActionResult.success(world.isClient);
 	}
@@ -72,6 +85,19 @@ public class EmptyPlantableFlowerPotBlock extends CustomFlowerPotBlock
 				{
 					stack.decrement(1);
 					world.setBlockState(pos, flowerPot.getDefaultState());
+				}
+				return ActionResult.success(world.isClient);
+			}
+			else if(FlowerPotBlockAccessor.getContentToPotted().get(block) != null)
+			{
+				if(!world.isClient)
+				{
+					stack.decrement(1);
+					world.setBlockState(pos, PlantablePots.UNSUPPORTED_FLOWER_POT.getDefaultState());
+					if(world.getBlockEntity(hit.getBlockPos()) instanceof UnsupportedPlantableFlowerPotBlockEntity entity)
+					{
+						entity.setFlower(block);
+					}
 				}
 				return ActionResult.success(world.isClient);
 			}
